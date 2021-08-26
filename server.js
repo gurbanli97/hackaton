@@ -47,4 +47,5 @@ app.get("/", (req,res) => {
 const port = 4000;
 app.listen(port, function () {
   console.log("app listeting on port " + port);
+  console.log("testing  " + port);
 });
