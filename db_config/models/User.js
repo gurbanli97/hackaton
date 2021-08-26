@@ -16,6 +16,10 @@ module.exports = mongoose => {
       type: String,
       required: true,
     },
+    role: {
+      type: String,
+      default: "User"
+    }
   }, {
     timestamps: {
       createdAt: 'created_at',
