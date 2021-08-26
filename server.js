@@ -3,6 +3,7 @@ const handlebars = require("express-handlebars");
 const passport = require("passport")
 const session = require("express-session")
 const MongoStore = require("connect-mongo")
+const {router, adminBro} = require("./admin/admin")
 
 var app = express();
 
@@ -20,6 +21,8 @@ app.use(
     saveUninitialized: true
   })
 )
+
+app.use(adminBro.options.rootPath, router)
 
 // view engine
 app.engine(".hbs", handlebars({extname: ".hbs"}));
