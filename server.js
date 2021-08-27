@@ -6,7 +6,6 @@ const MongoStore = require("connect-mongo")
 const {router, adminBro} = require("./admin/admin")
 const { connection } = require("./db_config/models")
 const flash = require("connect-flash")
-
 var app = express();
 
 app.use("/static", express.static("public"))
@@ -58,8 +57,12 @@ app.get("/", (req,res) => {
   res.render("index")
 })
 
+app.get("/logout", function(req, res){
+  req.logOut()
+  res.redirect("/login")
+})
+
 const port = 4000;
 app.listen(port, function () {
   console.log("app listeting on port " + port);
-  console.log("testing  " + port);
 });
