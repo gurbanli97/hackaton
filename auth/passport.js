@@ -13,13 +13,13 @@ module.exports = function (passport) {
               message: "This email is not registered",
             });
           }
-          bcrypt.compare(password, user.password, (err, isMatch) => {
+          bcrypt.compare(password, user.encrytedPassword, (err, isMatch) => {
             if (err) throw err;
             if (isMatch) {
               return done(null, user);
             } else {
               return done(null, false, {
-                // message: "Username or password is incorrect",
+                message: "Username or password is incorrect",
               });
             }
           });

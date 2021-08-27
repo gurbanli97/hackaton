@@ -13,7 +13,7 @@ router.post("/",forwardAuthenticated, async function (req, res) {
     fullname: req.body.fullname,
     email: req.body.email,
     dob: req.body.dob,
-    password: bcrypt.hashSync(req.body.password, 10),
+    encrytedPassword: bcrypt.hashSync(req.body.password, 10),
   });
 
   return res.redirect("/appointment");

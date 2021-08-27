@@ -5,6 +5,7 @@ const session = require("express-session")
 const MongoStore = require("connect-mongo")
 const {router, adminBro} = require("./admin/admin")
 const { connection } = require("./db_config/models")
+const flash = require("connect-flash")
 
 var app = express();
 
@@ -32,6 +33,15 @@ app.set("view engine", ".hbs");
 // body parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// flash
+app.use(flash())
+app.use(function(req, res, next){
+  res.locals.error_msg = req.flash("error_msg")
+  res.locals.error = req.flash("error")
+  next()
+})
+
 
 // passport
 require("./auth/passport")(passport);

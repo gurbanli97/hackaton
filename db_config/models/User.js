@@ -12,13 +12,13 @@ module.exports = mongoose => {
     dob: {
       type: Date
     },
-    password: {
+    encrytedPassword: {
       type: String,
       required: true,
     },
     role: {
       type: String,
-      default: "User"
+      default: "user"
     }
   }, {
     timestamps: {

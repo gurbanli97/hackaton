@@ -26,10 +26,47 @@ const adminBro = new AdminBro({
           created_at: {
             isVisible: { list: false, filter: true, show: true, edit: false },
           },
-          password: {
-            isVisible: { list: false, filter: false, show: false, edit: true },
+          encrytedPassword: {
+            isVisible: false,
           },
+          password: {
+            type: "string",
+            isVisible: {
+              list: false,
+              filter: false,
+              show: false,
+              edit: true
+            }
+          }
         },
+        actions: {
+          new: {
+            before: async (request) => {
+              if(request.payload.password) {
+                request.payload = {
+                  ...request.payload,
+                  encrytedPassword: await bcrypt.hash(request.payload.password, 10),
+                  password: undefined
+                }
+              }
+              return request
+            }
+          },
+          edit: {
+            new: {
+              before: async (request) => {
+                if(request.payload.password) {
+                  request.payload = {
+                    ...request.payload,
+                    encrytedPassword: await bcrypt.hash(request.payload.password, 10),
+                    password: undefined
+                  }
+                }
+                return request
+              }
+            },
+          }
+        }
       },
     },
   ],
@@ -39,7 +76,7 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
   authenticate: async (email, password) => {
     const user = await User.findOne({ email });
     if (user && user.role === "admin") {
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(password, user.encrytedPassword);
       if (isMatch) {
         return user;
       }
