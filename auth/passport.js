@@ -19,7 +19,7 @@ module.exports = function (passport) {
               return done(null, user);
             } else {
               return done(null, false, {
-                message: "Username or password is incorrect",
+                // message: "Username or password is incorrect",
               });
             }
           });
