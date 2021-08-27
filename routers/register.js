@@ -16,7 +16,7 @@ router.post("/",forwardAuthenticated, async function (req, res) {
     password: bcrypt.hashSync(req.body.password, 10),
   });
 
-  return res.json(req.body);
+  return res.redirect("/appointment");
 });
 
 module.exports = router;

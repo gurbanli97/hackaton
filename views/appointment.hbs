@@ -1,5 +1,10 @@
 <form action="appointment" method="post">
-  <input type="datetime-local" name="date" placeholder="pls choose date"/>
-  <input type="text" name="doctor" placeholder="choose doctor"/>
+  <input type="date" name="date" placeholder="pls choose date" />
+  <input type="time" name="date" placeholder="pls choose date" />
+  <label for="doctor">Choose a Doctor:</label>
+  <select id="doctor" name="doctor">
+    <option value="Dr. Emil" selected>Dr. Emil</option>
+    <option value="Dr. Filankes">Dr. Filankes</option>
+  </select>
   <button>Make Appointment</button>
 </form>

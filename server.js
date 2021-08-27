@@ -4,6 +4,7 @@ const passport = require("passport")
 const session = require("express-session")
 const MongoStore = require("connect-mongo")
 const {router, adminBro} = require("./admin/admin")
+const { connection } = require("./db_config/models")
 
 var app = express();
 
@@ -13,7 +14,7 @@ app.use(
   session({
     name: "adamyoxlayan",
     store: MongoStore.create({
-      mongoUrl: "mongodb+srv://root:bootcamp2021@cluster0.4hexy.mongodb.net/all?retryWrites=true&w=majority",
+      mongoUrl: connection._connectionString,
       ttl: 60 * 60 * 24 * 1
     }),
     secret: "mmW={}A8$<5E^@~Y*]]lF(DwKI>=a~",
