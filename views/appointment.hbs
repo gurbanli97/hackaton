@@ -1,10 +1,22 @@
 <form action="appointment" method="post">
-  <input type="date" name="date" placeholder="pls choose date" />
-  <input type="time" name="date" placeholder="pls choose date" />
   <label for="doctor">Choose a Doctor:</label>
   <select id="doctor" name="doctor">
     <option value="Dr. Emil" selected>Dr. Emil</option>
     <option value="Dr. Filankes">Dr. Filankes</option>
   </select>
+  <input
+    type="text"
+    style="width: 200px;margin: 20px; height: 40px; font-size: 18px;"
+    class="form-control"
+    id="datepicker"
+    autocomplete="off"
+    readonly="readonly"
+    name="date"
+  />
+  <label for="time">Choose a Time:</label>
+  <select id="time" name="time">
+    
+  </select>
   <button>Make Appointment</button>
+
 </form>

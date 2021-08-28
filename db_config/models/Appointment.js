@@ -8,7 +8,11 @@ module.exports = (mongoose) => {
         ref: "User",
       },
       date: {
-        type: Date,
+        type: String,
+        required: true,
+      },
+      time: {
+        type: String,
         required: true,
       },
       doctor: {

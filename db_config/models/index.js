@@ -4,7 +4,7 @@ const Mongoose = require('mongoose');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'test';
 const config = require(__dirname + '/../config/config.json')[env];
-
+console.log(`mongodb ${env} server connected`)
 if (config.database.url) {
   Mongoose.connect(config.database.url, config.database.options);
 } else if (config.database.config.dbName) {
