@@ -1,12 +1,73 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
+      integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css"
+      integrity="sha512-Fppbdpv9QhevzDE+UHmdxL4HoW8HantO+rC8oQB2hCofV+dWV2hePnP5SgiWR1Y1vbJeYONZfzQc5iII6sID2Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Medic App</title>
-</head>
-<body>
+  </head>
+  <body>
     {{{body}}}
-</body>
+
+    <script>
+      $('#datepicker').datepicker({
+      todayBtn: true, 
+      format: 'mm.dd.yyyy',
+      autoclose: true, 
+      startDate: new Date(),
+      todayHighlight: true,
+      maxViewMode: 2,
+      });
+
+      $("#datepicker").on("change", function(){
+        $("#time").html("")
+        var choosenDay = $("#datepicker").val()
+        $.ajax({
+          method: "POST",
+          url: "/appointment/check",
+          data: {choosenDay}
+        }).then((response)=>{
+        /* var time = new Date().toLocaleTimeString('az',
+            { 
+              timeStyle: 'short', 
+              hour12: false, 
+              timeZone: 'Asia/Baku' 
+            }
+            )
+        */
+          if(response.length !== 0){
+            response.forEach((hour) => {
+              if(hour /*> time*/){
+                $("#time").append(`<option value="${hour}">${hour}</option>`)
+              }
+            })
+          } else {
+            alert("Bu gune yerler dolufdu")
+          }
+        })
+      })
+      
+    </script>
+  </body>
 </html>

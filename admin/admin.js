@@ -1,5 +1,5 @@
 const connection = require("../db_config/models");
-const { User } = require("../db_config/models").default;
+const { User, Appointment } = require("../db_config/models").default;
 const bcrypt = require("bcryptjs");
 
 const AdminBro = require("admin-bro");
@@ -67,6 +67,32 @@ const adminBro = new AdminBro({
             },
           }
         }
+      },
+    },
+    {
+      resource: Appointment,
+      options: {
+        listProperties: ["patientId", "date", "doctor", "created_at"],
+        properties: {
+          updated_at: {
+            isVisible: { list: false, filter: true, show: true, edit: false },
+          },
+          created_at: {
+            isVisible: { list: false, filter: true, show: true, edit: false },
+          },
+          encrytedPassword: {
+            isVisible: false,
+          },
+          password: {
+            type: "string",
+            isVisible: {
+              list: false,
+              filter: false,
+              show: false,
+              edit: true
+            }
+          }
+        },
       },
     },
   ],

@@ -18,7 +18,8 @@ module.exports = mongoose => {
     },
     role: {
       type: String,
-      default: "user"
+      default: "user",
+      enum: ["admin", "user"],
     }
   }, {
     timestamps: {
