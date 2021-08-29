@@ -72,7 +72,7 @@ const adminBro = new AdminBro({
     {
       resource: Appointment,
       options: {
-        listProperties: ["patientId", "date", "doctor", "created_at"],
+        listProperties: ["fullname","email", "phone", "date","time", "place", "isVaccinated"],
         properties: {
           updated_at: {
             isVisible: { list: false, filter: true, show: true, edit: false },
