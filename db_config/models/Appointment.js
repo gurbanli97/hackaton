@@ -2,10 +2,17 @@
 module.exports = (mongoose) => {
   const newSchema = new mongoose.Schema(
     {
-      patientId: {
-        type: mongoose.Schema.Types.ObjectId,
+      fullname: {
+        type: String,
         required: true,
-        ref: "User",
+      },
+      email: {
+        type: String,
+        required: true,
+      },
+      phone: {
+        type: Number,
+        required: true,
       },
       date: {
         type: String,
@@ -15,10 +22,17 @@ module.exports = (mongoose) => {
         type: String,
         required: true,
       },
-      doctor: {
+      place: {
         type: String,
         required: true,
       },
+      message: {
+        type: String,
+      },
+      isVaccinated: {
+        type: Boolean,
+        default: false
+      }
     },
     {
       timestamps: {

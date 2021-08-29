@@ -33,14 +33,19 @@ router.post("/check", ensureAuthenticated, async function (req, res) {
 });
 
 router.post("/", ensureAuthenticated, async function (req, res) {
-  const { date, doctor, time } = req.body;
+  const {fullname, email, phone, date, time, place, message} = req.body;
   await Appointment.create({
+    fullname: fullname,
+    email: email,
+    phone: phone,
     patientId: req.user._id,
     date: date,
-    doctor: doctor,
+    place: place,
     time: time,
+    message, message
   });
-  res.send("OK");
+  req.flash("success.msg", "Appointment Created")
+  res.redirect("/#book-form");
 });
 
 module.exports = router;
