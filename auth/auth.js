@@ -10,6 +10,6 @@ module.exports = {
         if(!req.isAuthenticated()){
             return next()
         }
-        return res.redirect("/dashboard")
+        return res.redirect("/")
     }
 }
