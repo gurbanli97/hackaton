@@ -1,6 +1,7 @@
 const connection = require("../db_config/models");
 const { User, Appointment } = require("../db_config/models").default;
 const bcrypt = require("bcryptjs");
+const mailer = require("../tools/nodemailer")
 
 const AdminBro = require("admin-bro");
 const AdminBroExpress = require("@admin-bro/express");
@@ -80,27 +81,30 @@ const adminBro = new AdminBro({
           created_at: {
             isVisible: { list: false, filter: true, show: true, edit: false },
           },
-          encrytedPassword: {
-            isVisible: false,
-          },
-          password: {
-            type: "string",
-            isVisible: {
-              list: false,
-              filter: false,
-              show: false,
-              edit: true
-            }
+          isVaccinated: {
+            position: -1
           }
         },
+        actions: {
+          edit: {
+            before: async (request) => {
+              if(request.payload) {
+                if(request.payload.isVaccinated) {
+                  mailer("OK", request.payload.email, request.payload.fullname)
+                }
+              }
+              return request
+            }
+          }
+        }
       },
     },
   ],
 });
 
 const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
-  authenticate: async (email, password) => {
-    const user = await User.findOne({ email });
+  authenticate: async (loginEmail, password) => {
+    const user = await User.findOne({ email: loginEmail });
     if (user && user.role === "admin") {
       const isMatch = await bcrypt.compare(password, user.encrytedPassword);
       if (isMatch) {

@@ -7,7 +7,7 @@ router.get("/", ensureAuthenticated, function (req, res) {
   res.render("appointment");
 });
 
-router.post("/check", ensureAuthenticated, async function (req, res) {
+router.post("/check", async function (req, res) {
   var hours = [
     "09:00-10:00",
     "10:00-11:00",
@@ -32,13 +32,12 @@ router.post("/check", ensureAuthenticated, async function (req, res) {
   res.json(availableTime);
 });
 
-router.post("/", ensureAuthenticated, async function (req, res) {
+router.post("/", async function (req, res) {
   const {fullname, email, phone, date, time, place, message} = req.body;
   await Appointment.create({
     fullname: fullname,
     email: email,
     phone: phone,
-    patientId: req.user._id,
     date: date,
     place: place,
     time: time,
