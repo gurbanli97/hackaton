@@ -52,6 +52,7 @@ app.use(passport.session());
 app.use("/", require("./routers/index"))
 app.use("/login", require("./routers/login"))
 app.use("/register", require("./routers/register"))
+app.use("/appointment", require("./routers/appointment"))
 
 app.get("/logout", function(req, res){
   req.logOut()
