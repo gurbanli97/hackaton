@@ -1034,6 +1034,9 @@ footer {
 }
 
 @media only screen and (max-width: 600px){
+  .swiper-slide .slide-info h1 {
+    font-size: 40px;
+  }
     .header-info-credits {
         text-align: center;
     }
