@@ -14,7 +14,7 @@
                 </div>
                 <div class="header-user">
                     <i class="fas fa-user"></i>
-                    <a href="#" id="user-login">Log in</a>
+                    <a href="/admin" id="user-login">Log in</a>
                 </div>
                 <div class="header-info-social">
                     <span><i class="fab fa-facebook-f"></i></span>
@@ -336,9 +336,9 @@
                         <h1 id="book-form">Book An Appointment</h1>
                         {{> messages}}
                         <form method="POST" action="/appointment">
-                            <input type="text" id="name" name="fullname" placeholder="Your Fullname*">
-                            <input type="email" id="email" placeholder="Your Email*" name="email">
-                            <input type="tel" id="phone" placeholder="Phone Number*" name="phone">
+                            <input type="text" id="name" name="fullname" required="required" placeholder="Your Fullname*">
+                            <input type="email" id="email" placeholder="Your Email*"  required="required" name="email">
+                            <input type="tel" id="phone" placeholder="Phone Number*" required="required" name="phone">
                             <input
                                 type="text"
                                 class="form-control"
@@ -347,11 +347,12 @@
                                 autocomplete="off"
                                 readonly="readonly"
                                 name="date"
+                                required="required"
                             />
-                            <select id="time" name="time">
+                            <select id="time" name="time" required="required">
                                 <option value="">Choose Time...</option>
                             </select>
-                            <select name="place" id="place">
+                            <select name="place" id="place" required="required">
                                 <option value="" selected>Choose Department...</option>
                                 <option value="Brain-althim">Brain-althim</option>
                                 <option value="Heart-beat">Heart-beat</option>
