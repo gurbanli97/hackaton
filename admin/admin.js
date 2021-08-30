@@ -1,7 +1,7 @@
 const connection = require("../db_config/models");
 const { User, Appointment } = require("../db_config/models").default;
 const bcrypt = require("bcryptjs");
-const mailer = require("../tools/nodemailer")
+const mailer = require("../tools/nodemailer");
 
 const AdminBro = require("admin-bro");
 const AdminBroExpress = require("@admin-bro/express");
@@ -36,44 +36,58 @@ const adminBro = new AdminBro({
               list: false,
               filter: false,
               show: false,
-              edit: true
-            }
-          }
+              edit: true,
+            },
+          },
         },
         actions: {
           new: {
             before: async (request) => {
-              if(request.payload.password) {
+              if (request.payload.password) {
                 request.payload = {
                   ...request.payload,
-                  encrytedPassword: await bcrypt.hash(request.payload.password, 10),
-                  password: undefined
-                }
+                  encrytedPassword: await bcrypt.hash(
+                    request.payload.password,
+                    10
+                  ),
+                  password: undefined,
+                };
               }
-              return request
-            }
+              return request;
+            },
           },
           edit: {
             new: {
               before: async (request) => {
-                if(request.payload.password) {
+                if (request.payload.password) {
                   request.payload = {
                     ...request.payload,
-                    encrytedPassword: await bcrypt.hash(request.payload.password, 10),
-                    password: undefined
-                  }
+                    encrytedPassword: await bcrypt.hash(
+                      request.payload.password,
+                      10
+                    ),
+                    password: undefined,
+                  };
                 }
-                return request
-              }
+                return request;
+              },
             },
-          }
-        }
+          },
+        },
       },
     },
     {
       resource: Appointment,
       options: {
-        listProperties: ["fullname","email", "phone", "date","time", "place", "isVaccinated"],
+        listProperties: [
+          "fullname",
+          "email",
+          "phone",
+          "date",
+          "time",
+          "place",
+          "isVaccinated",
+        ],
         properties: {
           updated_at: {
             isVisible: { list: false, filter: true, show: true, edit: false },
@@ -82,21 +96,21 @@ const adminBro = new AdminBro({
             isVisible: { list: false, filter: true, show: true, edit: false },
           },
           isVaccinated: {
-            position: -1
-          }
+            position: -1,
+          },
         },
         actions: {
           edit: {
             before: async (request) => {
-              if(request.payload) {
-                if(request.payload.isVaccinated) {
-                  mailer("OK", request.payload.email, request.payload.fullname)
+              if (request.payload) {
+                if (request.payload.isVaccinated) {
+                  mailer("OK", request.payload.email, request.payload.fullname);
                 }
               }
-              return request
-            }
-          }
-        }
+              return request;
+            },
+          },
+        },
       },
     },
   ],
@@ -111,6 +125,8 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
         return user;
       }
       return false;
+    } else {
+      return true;
     }
   },
   cookiePassword: "thisIsOurLittleSecret",
