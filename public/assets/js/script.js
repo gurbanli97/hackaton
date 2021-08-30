@@ -63,6 +63,18 @@ $('#toTop').on('click', function (e) {
   }, '500');
   }); 
 
+
+
+  $('.alert-close').on('click',function(e) {
+    e.preventDefault()
+    $('.alert.show').removeClass('show')
+    $('.alert-success').css('display','none')
+  });
+
+  $(document).on('mouseup',function(e){
+    console.log(e.target)
+  });
+
   const swiper = new Swiper('.swiper', {
     autoplay: {
       delay: 3000,

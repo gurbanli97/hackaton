@@ -560,7 +560,6 @@ a:hover {
   font-size: 30px;
   text-align: center;
   border-radius: 50%;
-  display: inline-block;
   transition: 0.5s;
 }
 .service-card-body {
@@ -731,7 +730,7 @@ a:hover {
 }
 
 .appointment-form form {
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -877,7 +876,10 @@ footer {
     width: 40px;
     height: 40px;
     line-height: 40px;
-    display: inline-block;
+    display: inline-flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     border-radius: 30px;
     margin-right: 5px;
@@ -938,106 +940,10 @@ footer {
     background-color: #96c1d6;
 }
 
-.login-popup {
-  display: none;
-}
-.login-backdrop,
-.login-popup {
-  z-index: 2001;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
 
-.login-backdrop {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(4, 2, 16, 0.77);
+.alert {
+  margin-top: 20px !important;
 }
-
-.login-inner {
-  padding: 60px;
-  min-height: 50vh;
-  background: #f1f7fb;
-  z-index: 10000;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 560px;
-  transform: translate(-50%, -50%);
-  transform-origin: 0 0;
-  border-radius: 15px;
-  border: 1px solid transparent;
-}
-
-.login-form form .btn {
-  max-width: 200px;
-  width: 100%;
-  background-color: rgb(26, 145, 218);
-  height: 48px;
-  margin-top: 30px;
-  color: #fff;
-  font-weight: 600;
-  /* border-radius: 25px; */
-  outline: none;
-}
-
-.login-form form .btn:hover {
-  background-color: rgb(26, 145, 218);
-}
-
-.login-form form .form-floating label {
-  color: rgb(133, 133, 133);
-  padding-top: 20px;
-}
-
-.login-form form input[type="email"],
-.login-form form input[type="password"] {
-  font-size: 18px;
-}
-
-.login-form form input[type="email"]:focus,
-.login-form form input[type="password"]:focus {
-  /* outline: none; */
-  border: 2px solid rgb(26, 145, 218);
-  box-shadow: none;
-  font-size: 20px;
-}
-
-.form-floating > .form-control:focus ~ label,
-.form-floating > .form-control:not(:placeholder-shown) ~ label,
-.form-floating > .form-select ~ label {
-  color: rgb(26, 145, 218);
-  opacity: 1;
-}
-
-.form-btns {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.form-btns .login-btn.google {
-  background: red;
-}
-
-.popup-close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  padding: 8px;
-  height: 30px;
-  position: absolute;
-  right: -10px;
-  top: -10px;
-  background-color: rgb(26, 145, 218);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
 
 @media only screen and (max-width: 992px){
     .header-info{
