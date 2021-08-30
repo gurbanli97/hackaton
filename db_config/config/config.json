@@ -3,10 +3,8 @@
     "database": {
       "url": "mongodb://root:bootcamp2021@localhost:8081/MedicApp?authSource=admin",
       "options": {
-        "useCreateIndex": true,
         "useNewUrlParser": true,
-        "useUnifiedTopology": true,
-        "useFindAndModify": true
+        "useUnifiedTopology": true
       }
     }
   },
@@ -14,10 +12,8 @@
     "database": {
       "url": "mongodb+srv://root:bootcamp2021@cluster0.4hexy.mongodb.net/all?retryWrites=true&w=majority",
       "options": {
-        "useCreateIndex": true,
         "useNewUrlParser": true,
-        "useUnifiedTopology": true,
-        "useFindAndModify": true
+        "useUnifiedTopology": true
       }
     }
   },
