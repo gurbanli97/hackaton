@@ -1,11 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { ensureAuthenticated } = require("../auth/auth");
 const { Appointment } = require("../db_config/models").default;
-
-router.get("/", ensureAuthenticated, function (req, res) {
-  res.render("appointment");
-});
 
 router.post("/check", async function (req, res) {
   var hours = [

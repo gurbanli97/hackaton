@@ -5,7 +5,9 @@ const { User } = require("../db_config/models").default;
 const {forwardAuthenticated} = require("../auth/auth")
 
 router.get("/",forwardAuthenticated, function (req, res) {
-  res.render("register");
+  res.render("register", {
+    layout: "empty"
+  });
 });
 
 router.post("/",forwardAuthenticated, async function (req, res) {
@@ -16,7 +18,7 @@ router.post("/",forwardAuthenticated, async function (req, res) {
     encrytedPassword: bcrypt.hashSync(req.body.password, 10),
   });
 
-  return res.redirect("/appointment");
+  return res.redirect("/");
 });
 
 module.exports = router;
